@@ -2,7 +2,6 @@
 #define DOUBLY_LINKED_LIST_H
 #include <optional>
 #include <iostream>
-#include <utility>
 
 template <typename T>
 class DoublyLinkedList
@@ -58,8 +57,11 @@ public:
 
         return *this;
     };
-    void insertAtEnd(const T &&element);
-    void insertAtStart(const T &&element);
+    // the below 2 methods will make copies if an rvalue is passed in
+    // to overcome this we can overload the method and duplicate
+    // to optimise for rvalues
+    void insertAtEnd(const T &element);
+    void insertAtStart(const T &element);
     bool search(const T &element) const;
     std::optional<T> remove(const T &element);
     std::optional<T> removeFromStart();
@@ -90,9 +92,9 @@ private:
 };
 
 template <typename T>
-void DoublyLinkedList<T>::insertAtEnd(const T &&element)
+void DoublyLinkedList<T>::insertAtEnd(const T &element)
 {
-    Node *newNode = new Node(std::move(element));
+    Node *newNode = new Node(element);
 
     if (!firstNode)
     {
@@ -109,9 +111,9 @@ void DoublyLinkedList<T>::insertAtEnd(const T &&element)
 }
 
 template <typename T>
-void DoublyLinkedList<T>::insertAtStart(const T &&element)
+void DoublyLinkedList<T>::insertAtStart(const T &element)
 {
-    Node *newNode = new Node(std::move(element));
+    Node *newNode = new Node(element);
 
     if (firstNode == nullptr)
     {

@@ -8,6 +8,7 @@ class Stack
 {
 public:
     Stack() : linkedList{} {};
+    void push(const T &element);
     void push(const T &&element);
     std::optional<T> pop();
 
@@ -16,9 +17,15 @@ private:
 };
 
 template <typename T>
+void Stack<T>::push(const T &element)
+{
+    linkedList.insertAtStart(element);
+}
+
+template <typename T>
 void Stack<T>::push(const T &&element)
 {
-    linkedList.insertAtStart(std::move(element));
+    linkedList.insertAtStart(element);
 }
 
 template <typename T>

@@ -1,5 +1,5 @@
-#include "./header/stack.h"
-#include "./test/test.h"
+#include "../header/stack.h"
+#include "../test/test.h"
 /*
     LIFO Stack
     Description: A LIFO (Last In, First Out) stack is a linear data structure where the last element added is the first one to be removed.
@@ -15,7 +15,10 @@ TEST_CASE("testing Stack")
     stack.push(12928);
     stack.push(1);
     stack.push(74);
+    int ft = 43;
+    stack.push(ft);
 
+    CHECK(stack.pop() == ft);
     CHECK(stack.pop() == 74);
     CHECK(stack.pop() == 1);
     CHECK(stack.pop() == 12928);
