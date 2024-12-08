@@ -10,6 +10,7 @@ public:
     Queue() : linkedList{} {};
     void enqueue(const T &element);
     void enqueue(const T &&element);
+    bool isEmpty();
     std::optional<T> dequeue();
 
 private:
@@ -32,6 +33,12 @@ template <typename T>
 std::optional<T> Queue<T>::dequeue()
 {
     return linkedList.removeFromEnd();
+}
+
+template <typename T>
+bool Queue<T>::isEmpty()
+{
+    return linkedList.getLength() == 0;
 }
 
 #endif

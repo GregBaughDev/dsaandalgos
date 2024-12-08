@@ -2,11 +2,7 @@
 #include "./treenode.h"
 #include "../header/queue.h"
 #include <iostream>
-/*
-    Depth First Search (DFS)
-    Description: DFS is an algorithm for traversing or searching tree or graph data structures. It explores as far down a branch as possible before backtracking.
-    Implementation Hint: Use a stack (or recursion) to keep track of nodes to explore.
-*/
+
 template <typename T>
 void printNode(const TreeNode<T> *node, std::string funName)
 {
@@ -55,7 +51,7 @@ void dfPost(const TreeNode<T> *node, Queue<T> &queue)
     printNode(node, "VISITNG**dfPost**");
 }
 
-TEST_CASE("Testing DFS - pre order")
+TEST_CASE("Testing DF traverse - pre order")
 {
     Queue<int> queue;
     TreeNode<int> rootNode{45};
@@ -110,7 +106,7 @@ TEST_CASE("Testing DFS - pre order")
     CHECK(queue.dequeue() == 420);
 }
 
-TEST_CASE("Testing DFS - in order")
+TEST_CASE("Testing DF traverse- in order")
 {
     Queue<int> queue;
     TreeNode<int> rootNode{45};
@@ -165,7 +161,7 @@ TEST_CASE("Testing DFS - in order")
     CHECK(queue.dequeue() == 420);
 }
 
-TEST_CASE("Testing DFS - post order")
+TEST_CASE("Testing DF traverse - post order")
 {
     Queue<int> queue;
     TreeNode<int> rootNode{45};
