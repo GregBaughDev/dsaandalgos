@@ -1,12 +1,13 @@
 #include "../test/test.h"
 #include <vector>
-
+#include <cassert>
+#include <iostream>
+#include <optional>
 /*
     Min Heap
     Description: A min heap is a complete binary tree where the value of each node is less than or equal to the values of its children, ensuring the minimum element is at the root.
     Implementation Hint: Similar to max heap, implement insertion and deletion while maintaining the heap property.
 */
-// WIP!!
 class MinHeap
 {
 public:
@@ -62,15 +63,15 @@ void MinHeap::heapifyUp(int index)
 
     if (indexValue < parentValue)
     {
-        items[index] = parentValue;
-        items[parentIndex] = indexValue;
+        items.at(index) = parentValue;
+        items.at(parentIndex) = indexValue;
         heapifyUp(parentIndex);
     }
 }
 
 void MinHeap::heapifyDown(int index)
 {
-    if (index >= length)
+    if (index > length - 1)
     {
         return;
     }
@@ -78,21 +79,48 @@ void MinHeap::heapifyDown(int index)
     int indexValue = items.at(index);
     int leftIndex = getLeftIndex(index);
     int rightIndex = getRightIndex(index);
-    int leftValue = items.at(leftIndex);
-    int rightValue = items.at(rightIndex);
 
-    if (leftIndex > length && indexValue > leftValue)
+    std::optional<int> leftValue = std::nullopt;
+    std::optional<int> rightValue = std::nullopt;
+
+    if (leftIndex < length) 
     {
-        items.at(leftIndex) = indexValue;
-        items.at(index) = leftValue;
-        heapifyDown(leftIndex);
+        leftValue = items.at(leftIndex);
+    }
+    
+    if (rightIndex < length)
+    {
+        rightValue = items.at(rightIndex);
     }
 
-    if (rightIndex > length && indexValue > rightValue)
+    if (leftValue.has_value() && rightValue.has_value())
+    {
+        if (leftValue < rightValue && leftValue < indexValue)
+        {
+            items.at(leftIndex) = indexValue;
+            items.at(index) = leftValue.value();
+            return heapifyDown(leftIndex);
+        }
+        else if (rightValue < leftValue && rightValue < indexValue)
+        {
+            items.at(rightIndex) = indexValue;
+            items.at(index) = rightValue.value();
+            return heapifyDown(rightIndex);
+        }
+    }
+
+    if (rightValue.has_value() && rightValue < indexValue)
     {
         items.at(rightIndex) = indexValue;
-        items.at(index) = rightValue;
-        heapifyDown(rightIndex);
+        items.at(index) = rightValue.value();
+        return heapifyDown(rightIndex);
+    }
+
+    if (leftValue.has_value() && leftValue < indexValue)
+    {
+        items.at(leftIndex) = indexValue;
+        items.at(index) = leftValue.value();
+        return heapifyDown(leftIndex);
     }
 }
 
