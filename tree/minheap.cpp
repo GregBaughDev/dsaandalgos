@@ -1,6 +1,5 @@
 #include "../test/test.h"
 #include <vector>
-#include <cassert>
 #include <iostream>
 #include <optional>
 /*
@@ -29,7 +28,6 @@ private:
 
 int MinHeap::pop()
 {
-    // pop is fucked
     int item = items.front();
     length--;
     items.at(0) = items.at(length);
