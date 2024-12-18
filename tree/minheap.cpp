@@ -1,6 +1,5 @@
 #include "../test/test.h"
 #include <vector>
-#include <iostream>
 #include <optional>
 /*
     Min Heap
@@ -24,6 +23,7 @@ private:
     int getParentIndex(int index);
     void heapifyDown(int index);
     void heapifyUp(int index);
+    void swap(int index1, int value1, int index2, int value2);
 };
 
 std::optional<int> MinHeap::pop()
@@ -66,15 +66,14 @@ void MinHeap::heapifyUp(int index)
 
     if (indexValue < parentValue)
     {
-        items.at(index) = parentValue;
-        items.at(parentIndex) = indexValue;
+        swap(index, parentValue, parentIndex, indexValue);
         heapifyUp(parentIndex);
     }
 }
 
 void MinHeap::heapifyDown(int index)
 {
-    if (index > length - 1)
+    if (index >= length)
     {
         return;
     }
@@ -100,29 +99,25 @@ void MinHeap::heapifyDown(int index)
     {
         if (leftValue < rightValue && leftValue < indexValue)
         {
-            items.at(leftIndex) = indexValue;
-            items.at(index) = leftValue.value();
+            swap(leftIndex, indexValue, index, leftValue.value());
             return heapifyDown(leftIndex);
         }
         else if (rightValue < leftValue && rightValue < indexValue)
         {
-            items.at(rightIndex) = indexValue;
-            items.at(index) = rightValue.value();
+            swap(rightIndex, indexValue, index, rightValue.value());
             return heapifyDown(rightIndex);
         }
     }
 
     if (rightValue.has_value() && rightValue < indexValue)
     {
-        items.at(rightIndex) = indexValue;
-        items.at(index) = rightValue.value();
+        swap(rightIndex, indexValue, index, rightValue.value());
         return heapifyDown(rightIndex);
     }
 
     if (leftValue.has_value() && leftValue < indexValue)
     {
-        items.at(leftIndex) = indexValue;
-        items.at(index) = leftValue.value();
+        swap(leftIndex, indexValue, index, leftValue.value());
         return heapifyDown(leftIndex);
     }
 }
@@ -158,6 +153,13 @@ int MinHeap::getLength()
 {
     return length;
 }
+
+void MinHeap::swap(int index1, int value1, int index2, int value2)
+{
+    items.at(index1) = value1;
+    items.at(index2) = value2;
+}
+
 
 TEST_CASE("MinHeap test 1")
 {
