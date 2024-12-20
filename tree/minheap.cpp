@@ -23,7 +23,7 @@ private:
     int getParentIndex(int index);
     void heapifyDown(int index);
     void heapifyUp(int index);
-    void swap(int index1, int value1, int index2, int value2);
+    void swap(int index1, int index2);
 };
 
 std::optional<int> MinHeap::pop()
@@ -66,7 +66,7 @@ void MinHeap::heapifyUp(int index)
 
     if (indexValue < parentValue)
     {
-        swap(index, parentValue, parentIndex, indexValue);
+        swap(index, parentIndex);
         heapifyUp(parentIndex);
     }
 }
@@ -99,25 +99,25 @@ void MinHeap::heapifyDown(int index)
     {
         if (leftValue < rightValue && leftValue < indexValue)
         {
-            swap(leftIndex, indexValue, index, leftValue.value());
+            swap(leftIndex, index);
             return heapifyDown(leftIndex);
         }
         else if (rightValue < leftValue && rightValue < indexValue)
         {
-            swap(rightIndex, indexValue, index, rightValue.value());
+            swap(rightIndex, index);
             return heapifyDown(rightIndex);
         }
     }
 
     if (rightValue.has_value() && rightValue < indexValue)
     {
-        swap(rightIndex, indexValue, index, rightValue.value());
+        swap(rightIndex, index);
         return heapifyDown(rightIndex);
     }
 
     if (leftValue.has_value() && leftValue < indexValue)
     {
-        swap(leftIndex, indexValue, index, leftValue.value());
+        swap(leftIndex, index);
         return heapifyDown(leftIndex);
     }
 }
@@ -154,12 +154,12 @@ int MinHeap::getLength()
     return length;
 }
 
-void MinHeap::swap(int index1, int value1, int index2, int value2)
+void MinHeap::swap(int index1, int index2)
 {
-    items.at(index1) = value1;
-    items.at(index2) = value2;
+    int tempValue = items.at(index1);
+    items.at(index1) = items.at(index2);
+    items.at(index2) = tempValue;
 }
-
 
 TEST_CASE("MinHeap test 1")
 {
