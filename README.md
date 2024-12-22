@@ -4,7 +4,7 @@ I want to brush up my DSA & algo skills!
 
 In progress:
 
-- `circularbuffer`
+- `unweightedgraph`
 
 Complete:
 
@@ -21,5 +21,6 @@ Complete:
     - dftraverse
     - maxheap
     - minheap
+- circularbuffer (in C)
 
 **NOTE** It needs to be compiled with C++20 and doctest.h in the `test` directory
