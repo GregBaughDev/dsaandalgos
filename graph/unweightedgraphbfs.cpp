@@ -1,8 +1,7 @@
 #include "../test/test.h"
+#include "../header/queue.h"
 #include <vector>
 #include <array>
-#include <iostream>
-#include "../header/queue.h"
 /*
     Unweighted Graph
     Description: An unweighted graph is a graph where all edges have the same weight, typically treated as having a weight of one.
@@ -57,9 +56,6 @@ std::vector<int> bfsMatrix(std::array<std::array<int, arraySize>, arraySize> &gr
         traceBack = prev[traceBack];
     }
 
-    for (auto c : outVec)
-        std::cout << "C -> " << c << "\n";
-
     return outVec;
 }
 
@@ -78,7 +74,10 @@ TEST_CASE("Unweighted graph - BFS - adjacency matrix")
             {1, 0, 0, 0, 0, 0, 0, 0, 1}, // 7
             {1, 1, 0, 0, 0, 0, 0, 1, 0}, // 8
         }};
-    bfsMatrix(graph, 1, 4);
+
+    std::vector<int> traversal1 = bfsMatrix(graph, 1, 4);
+
+    CHECK(traversal1.size() == 3);
 }
 
 // test a bigger graph
