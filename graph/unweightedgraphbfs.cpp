@@ -9,7 +9,7 @@
     Implementation Hint: Represent it using an adjacency list or matrix without concern for edge weights.
 */
 // adjacency matrix -- WIP!
-template<ulong arraySize>
+template<u_long arraySize>
 std::vector<int> bfsMatrix(std::array<std::array<int, arraySize>, arraySize> &graph, int source, int needle)
 {
     if (needle >= arraySize)
@@ -56,25 +56,31 @@ std::vector<int> bfsMatrix(std::array<std::array<int, arraySize>, arraySize> &gr
         traceBack = prev[traceBack];
     }
 
+    for (auto c : outVec) std::cout << "C -> " << c << "\n";
+
     return outVec;
 }
 
 TEST_CASE("Unweighted graph - BFS - adjacency matrix")
 {
     std::array<std::array<int, 9>, 9> graph = {
-        {
-            {0, 1, 0, 1, 0, 1, 1, 1, 1},
-            {1, 0, 0, 0, 0, 1, 0, 0, 1},
-            {0, 0, 0, 0, 0, 1, 0, 0, 0},
-            {1, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 1, 0, 0, 0},
-            {1, 1, 1, 0, 1, 0, 0, 0, 1},
-            {1, 0, 0, 0, 0, 0, 0, 0, 0},
-            {1, 0, 0, 0, 0, 0, 0, 0, 1},
-            {1, 1, 0, 0, 0, 0, 0, 1, 0},
+        {  //0, 1, 2, 3, 4, 5, 6, 7, 8
+            {0, 1, 0, 1, 0, 1, 1, 1, 1}, // 0
+            {1, 0, 0, 0, 0, 1, 0, 0, 1}, // 1
+            {0, 0, 0, 0, 0, 1, 0, 0, 0}, // 2
+            {1, 0, 0, 0, 0, 0, 0, 0, 0}, // 3
+            {0, 0, 0, 0, 0, 1, 0, 0, 0}, // 4
+            {1, 1, 1, 0, 1, 0, 0, 0, 1}, // 5
+            {1, 0, 0, 0, 0, 0, 0, 0, 0}, // 6
+            {1, 0, 0, 0, 0, 0, 0, 0, 1}, // 7
+            {1, 1, 0, 0, 0, 0, 0, 1, 0}, // 8
         }
     };
     bfsMatrix(graph, 1, 4);
 }
+
+// test a bigger graph
+// test values not in the graph
+// test needle bigger than size
 
 // adjacency list
