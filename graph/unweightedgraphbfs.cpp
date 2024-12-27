@@ -9,11 +9,11 @@
     Implementation Hint: Represent it using an adjacency list or matrix without concern for edge weights.
 */
 // adjacency matrix -- WIP!
-template<u_long arraySize>
+template <u_long arraySize>
 std::vector<int> bfsMatrix(std::array<std::array<int, arraySize>, arraySize> &graph, int source, int needle)
 {
     if (needle >= arraySize)
-    // check that the needle is within the bounds of the arraysize
+        // check that the needle is within the bounds of the arraysize
         return {};
 
     std::array<bool, arraySize> seen;
@@ -21,11 +21,12 @@ std::vector<int> bfsMatrix(std::array<std::array<int, arraySize>, arraySize> &gr
     Queue<int> queue;
 
     prev.fill(-1);
+    seen.fill(false);
 
     queue.enqueue(source);
     seen[source] = true;
 
-    while (!queue.isEmpty()) 
+    while (!queue.isEmpty())
     {
         int currValue = queue.dequeue().value();
 
@@ -33,21 +34,21 @@ std::vector<int> bfsMatrix(std::array<std::array<int, arraySize>, arraySize> &gr
         {
             if (seen[i] || graph[currValue][i] == 0) // we've already seen the value or no link
                 continue;
-            
-            seen[i] = true;
 
-            if (graph[currValue][i] == needle)
+            seen[i] = true;
+            prev[i] = currValue;
+
+            if (i == needle)
                 break;
 
-            prev[i] = currValue;
             queue.enqueue(i);
         }
     }
 
     if (prev[needle] == -1)
         return {};
-    
-    std::vector<int> outVec = { needle }; // UP TO HERE - reverse the outvec
+
+    std::vector<int> outVec = {needle}; // UP TO HERE - reverse the outvec
 
     int traceBack = prev[needle];
     while (traceBack != -1)
@@ -56,7 +57,8 @@ std::vector<int> bfsMatrix(std::array<std::array<int, arraySize>, arraySize> &gr
         traceBack = prev[traceBack];
     }
 
-    for (auto c : outVec) std::cout << "C -> " << c << "\n";
+    for (auto c : outVec)
+        std::cout << "C -> " << c << "\n";
 
     return outVec;
 }
@@ -64,7 +66,8 @@ std::vector<int> bfsMatrix(std::array<std::array<int, arraySize>, arraySize> &gr
 TEST_CASE("Unweighted graph - BFS - adjacency matrix")
 {
     std::array<std::array<int, 9>, 9> graph = {
-        {  //0, 1, 2, 3, 4, 5, 6, 7, 8
+        {
+            // 0, 1, 2, 3, 4, 5, 6, 7, 8
             {0, 1, 0, 1, 0, 1, 1, 1, 1}, // 0
             {1, 0, 0, 0, 0, 1, 0, 0, 1}, // 1
             {0, 0, 0, 0, 0, 1, 0, 0, 0}, // 2
@@ -74,8 +77,7 @@ TEST_CASE("Unweighted graph - BFS - adjacency matrix")
             {1, 0, 0, 0, 0, 0, 0, 0, 0}, // 6
             {1, 0, 0, 0, 0, 0, 0, 0, 1}, // 7
             {1, 1, 0, 0, 0, 0, 0, 1, 0}, // 8
-        }
-    };
+        }};
     bfsMatrix(graph, 1, 4);
 }
 
