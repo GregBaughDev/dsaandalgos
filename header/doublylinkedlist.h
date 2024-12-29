@@ -289,13 +289,13 @@ void DoublyLinkedList<T>::Node::setPrevNode(Node *newPrevNode)
 }
 
 template <typename T>
-DoublyLinkedList<T>::Node *DoublyLinkedList<T>::Node::getNextNode() const
+typename DoublyLinkedList<T>::Node *DoublyLinkedList<T>::Node::getNextNode() const
 {
     return this->nextNode;
 }
 
 template <typename T>
-DoublyLinkedList<T>::Node *DoublyLinkedList<T>::Node::getPrevNode() const
+typename DoublyLinkedList<T>::Node *DoublyLinkedList<T>::Node::getPrevNode() const
 {
     return this->prevNode;
 }

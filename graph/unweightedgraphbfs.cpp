@@ -165,7 +165,7 @@ TEST_CASE("Unweighted graph - BFS - adjacency matrix test 2")
 
 // adjacency list
 template <u_long arraySize>
-std::vector<int> bfsList(std::array<std::array<int, arraySize>, arraySize> &graph, int source, int needle)
+std::vector<int> bfsList(std::array<std::vector<int>, arraySize> &graph, int source, int needle)
 {
     if (needle >= arraySize)
         return {};
@@ -216,7 +216,7 @@ std::vector<int> bfsList(std::array<std::array<int, arraySize>, arraySize> &grap
 
 TEST_CASE("Unweighted graph - BFS - adjacency list test 1")
 {
-    std::array<std::array<int, 9>, 9> graph = {
+    std::array<std::vector<int>, 9> graph = {
         {
             {1, 3, 5, 6, 7, 8}, // 0
             {0, 5, 8},          // 1
@@ -256,8 +256,7 @@ TEST_CASE("Unweighted graph - BFS - adjacency list test 1")
 
 TEST_CASE("Unweighted graph - BFS - adjacency list test 2")
 {
-    // wip trying to fix this test!
-    std::array<std::array<int, 16>, 16> graph = {
+    std::array<std::vector<int>, 16> graph = {
         {
             {1, 8, 12}, // 0
             {0, 5, 9, 11}, // 1
