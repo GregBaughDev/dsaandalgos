@@ -225,7 +225,8 @@ TEST_CASE("Unweighted graph - BFS - adjacency list test 1")
             {0},                // 6
             {0, 8},             // 7
             {0, 1, 7}           // 8
-        }};
+        }
+    };
 
     std::vector<int> traversal1 = dfsList(graph, 1, 4);
 
@@ -275,7 +276,8 @@ TEST_CASE("Unweighted graph - BFS - adjacency list test 2")
             {3, 6, 10}, // 13
             {5, 8}, // 14
             {3} // 15
-        }};
+        }
+    };
 
     std::vector<int> traversal1 = dfsList(graph, 1, 4);
 
