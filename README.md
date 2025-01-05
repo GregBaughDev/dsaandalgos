@@ -4,7 +4,7 @@ I want to brush up my DSA & algo skills!
 
 In progress:
 
-- `Dijkstra.cpp`
+- `priorityqueue.cpp`
 
 Complete:
 
@@ -25,5 +25,6 @@ Complete:
 - graph
     - unweightedgraphbfs
     - unweightedgraphdfs
+- Dijkstra
 
 **NOTE** It needs to be compiled with C++20 and doctest.h in the `test` directory
