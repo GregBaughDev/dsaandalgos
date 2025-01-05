@@ -2,10 +2,6 @@
 
 I want to brush up my DSA & algo skills!
 
-In progress:
-
-- `priorityqueue.cpp`
-
 Complete:
 
 - binarysearch
