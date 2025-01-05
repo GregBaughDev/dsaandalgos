@@ -94,7 +94,7 @@ std::vector<int> dijkstraAdjList(std::array<std::vector<GraphNode>, arraySize> &
     return outVec;
 }
 
-TEST_CASE("Djikstra - Test 1")
+TEST_CASE("Dijkstra - Test 1")
 {
     std::array<std::vector<GraphNode>, 8> graph = {
         {
@@ -145,7 +145,7 @@ TEST_CASE("Djikstra - Test 1")
     CHECK(test4.at(5) == 0);
 }
 
-TEST_CASE("Djikstra - Test 2")
+TEST_CASE("Dijkstra - Test 2")
 {
     std::array<std::vector<GraphNode>, 21> graph = {
         {
