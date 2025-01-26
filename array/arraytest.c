@@ -46,10 +46,20 @@ void test2()
     IntArrayList* list = initArrayList(5);
 
     int LIST_SIZE = 10000;
-    
+
     for (int i = 0; i < LIST_SIZE; i++)
     {
         unshift(list, i);
+    }
+
+    int m = LIST_SIZE - 1;
+    int n = 0;
+
+    while (m != -1)
+    {
+        assert(getElementAt(list, n) == m);
+        m--;
+        n++;
     }
 
     assert(list->cap == 10240);
