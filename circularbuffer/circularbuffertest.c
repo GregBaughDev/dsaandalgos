@@ -35,6 +35,7 @@ void test1()
     assert(pop(buf) == -1);
     printf("Test 1 passed!\n");
 
+    free(buf->list);
     free(buf);
 }
 
@@ -98,5 +99,6 @@ void test2()
     assert(pop(buf) == -1);
     printf("Test 2 passed!\n");
 
+    free(buf->list);
     free(buf);
 }
