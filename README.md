@@ -2,9 +2,6 @@
 
 I want to brush up my DSA & algo skills!
 
-To do:
-- hashtable
-
 Complete:
 
 - binarysearch
@@ -20,11 +17,13 @@ Complete:
     - dftraverse
     - maxheap
     - minheap
+    - trie
 - circularbuffer (in C)
 - graph
     - unweightedgraphbfs
     - unweightedgraphdfs
 - Dijkstra
 - arraylist
+- hashtable
 
 **NOTE** It needs to be compiled with C++20 and doctest.h in the `test` directory
